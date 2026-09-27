@@ -5,7 +5,8 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mobile_app/views/auth/signup_screen.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-
+import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'views/auth/login_screen.dart';
 import 'views/auth/login_screen.dart';
 import 'controllers/auth_controller.dart';
@@ -49,13 +50,18 @@ Future<void> main() async {
       statusBarIconBrightness: Brightness.dark,
     ),
   );
-
+  try {
+    await dotenv.load(fileName: "assets/secrets.env");
+    debugPrint("✅ تم تحميل المفاتيح بنجاح!");
+  } catch (e) {
+    debugPrint("❌ لم يتم العثور على الملف: $e");
+  }
   // 1. تهيئة Supabase
   await Supabase.initialize(
-    url: ApiEndpoints.supabaseUrl,
-    anonKey: ApiEndpoints.supabaseAnonKey,
-  );
-
+      url: dotenv.env['SUPABASE_URL'] ?? '',
+      anonKey: dotenv.env['SUPABASE_ANON_KEY'] ?? '');
+  print("URL from env: ${dotenv.env['SUPABASE_URL']}");
+  print("Key from env: ${dotenv.env['SUPABASE_ANON_KEY']}");
   // 2. تهيئة الخدمات والمتحكمات الأساسية
   await initServices();
 

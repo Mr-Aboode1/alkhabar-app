@@ -1,10 +1,11 @@
 /// إعدادات الاتصال وجداول قاعدة بيانات Supabase
-class ApiEndpoints {
-  // رابط ومفتاح Supabase (استبدلها ببيانات مشروعك الخاصة)
-  static const String supabaseUrl = 'https://bqroboskifelkvhylapq.supabase.co';
+///
+import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-  static const String supabaseAnonKey =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJxcm9ib3NraWZlbGt2aHlsYXBxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc0MDc3OTEsImV4cCI6MjEwMjk4Mzc5MX0.brDz4Gonc8aOpSKHNtH792mrGqju4wNKs-i3JGkSYE0';
+class ApiEndpoints {
+  static String get url => dotenv.env['SUPABASE_URL'] ?? '';
+  static String get anonKey => dotenv.env['SUPABASE_ANON_KEY'] ?? '';
 
   // أسماء الجداول في Supabase
   static const String tableNews = 'news';

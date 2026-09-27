@@ -13,7 +13,7 @@ dependencies:
   fl_chart: ^0.68.0
   # إدارة الحالة والراوتينج
   get: ^4.6.6
-
+  flutter_dotenv: ^5.1.0
   # قاعدة البيانات السحابية Supabase والمزامنة اللحظية
   supabase_flutter: ^2.5.6
 
@@ -52,6 +52,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  # assets:
+
+  assets:
+    - assets/secrets.env
   #   - assets/images/
   #   - assets/icons/
